@@ -1,29 +1,30 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import { useEffect, useState } from "react";
-import { api_get_countries } from "./data/api.js";
-import CountryContainer from "./components/CountryContainer";
+import { Route, Routes } from "react-router-dom";
+
+
+import Layout from "./Layout";
+import About from "./components/About";
+import CountriesRoutes from "./CountriesRoutes";
+import NotFound from "./components/NotFound";
+import Countries from "./components/Countries";
 
 
 function App() {
-    const [countries, setCountries] = useState("");
 
-    useEffect(() => {
-        fetch(api_get_countries)
-            .then((data) => data.json())
-            .then((data) => {
-                setCountries(data);
-            })
-            .catch((err) => console.log(err.message));
-    }, []);
-
-  
-  return (
-    <div className="App">
-      {countries && <CountryContainer countries={countries}/>}
-    </div>
-  )
+ 
+    return (
+        <>
+            <Routes>
+                <Route path="/" element={<Layout />}>
+                    <Route index element={<Countries />} />
+                    <Route path="about" element={<About />} />
+                    <Route path="countries/*" element={<CountriesRoutes />} />
+                    <Route path="*" element={<NotFound />} />
+                </Route>
+            </Routes>
+        </>
+    );
 }
-
 
 export default App;

@@ -25,17 +25,11 @@ h1 {
   padding: 0;
 }
 
-.countries > div {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
-}
-
 .country {
-  transition: all .3s ease;
-  cursor: pointer;
-}
-
-.country a {
   color: #0d6efd;
+  display: block;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+  transition: all .3s ease;
 }
 
 .hover-light:hover {
@@ -59,9 +53,26 @@ h1 {
     display: none;
   }
 
-  .countries>div:nth-child(odd) {
+  .countries>a:nth-child(odd) {
     border-right: 1px solid rgba(0, 0, 0, 0.125);
   }
-
 }
 
+.navbar-nav {
+  flex-direction: row;
+  column-gap: 15px;
+}
+
+.active {
+  font-weight: 700;
+}
+
+.about-text {
+  font-size: 16px;
+  max-width: 40em;
+  line-height: 1.6;
+  padding: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 10px;
+ text-align: justify;
+}
