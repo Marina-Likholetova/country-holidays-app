@@ -9,7 +9,7 @@ export default function NotFound() {
         setTimeout(() => {
             navigate("/");
         }, 1000);
-    }, []);
+    });
 
     return <h1>Not Found</h1>;
 }
