@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
+import './sass/main.sass'
 
 import Countries from "./components/Countries";
 import Holidays from "./components/Holidays";

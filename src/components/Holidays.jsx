@@ -1,20 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { api_get_holidays } from "../data/api.js";
 import { IoArrowBack } from "react-icons/io5";
-
+import useApi from "marinafetchreacthook";
 
 export default function Holidays() {
     const { countryCode } = useParams();
     const navigate = useNavigate();
-    const [holidays, setHolidays] = useState();
-
-    useEffect(() => {
-        fetch(api_get_holidays + countryCode)
-            .then((data) => (data.status === 200 ? data.json() : navigate(-1)))
-            .then((data) => setHolidays(data))
-            .catch((err) => console.log(err.message));
-    });
+    const { isLoading, isError, data } = useApi(api_get_holidays + countryCode);
 
 
     return (
@@ -35,8 +28,8 @@ export default function Holidays() {
                     </tr>
                 </thead>
                 <tbody>
-                    {holidays &&
-                        holidays.map((holiday, i) => (
+                    {data &&
+                        data.map((holiday, i) => (
                             <tr key={i} className="hover-light">
                                 <td>{new Date(holiday.date).toLocaleDateString()}</td>
                                 <td className="md-display">{holiday.localName}</td>
@@ -48,6 +41,8 @@ export default function Holidays() {
                         ))}
                 </tbody>
             </table>
+            {isLoading && <div className="lds-ripple"><div></div><div></div></div>}
+            {isError && <div>Error...</div>}
         </>
     );
 }

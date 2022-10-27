@@ -6,7 +6,7 @@ import { IoSearch } from "react-icons/io5";
 export default function Input({ inputData, onChangeInput }) {
   
     return (
-        <div className="input-group mt-3 mb-3 shadow p-3 bg-body rounded">
+        <div className="search-box input-group mt-3 mb-3 shadow p-3 rounded">
             <span className="input-group-text hover-light">
                 <IoSearch />
             </span>

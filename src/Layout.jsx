@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { BsFillMoonStarsFill, BsFillSunFill } from "react-icons/bs";
+import { ThemeContext } from './context';
 
 export default function Layout() {
+    const { toggleTheme } = useContext(ThemeContext);
   
     return (
         <div className="container">
-            <header>
+            <header className="header">
                 <nav className="navbar navbar-light">
                     <ul className="navbar-nav">
                          <li>
@@ -16,6 +19,12 @@ export default function Layout() {
                         </li> 
                     </ul>
                 </nav>
+
+                <div className="switch">
+                    <span className='light' onClick={toggleTheme}><BsFillSunFill/></span>
+                    <span className='dark' onClick={toggleTheme}><BsFillMoonStarsFill/></span>
+                </div>
+               
             </header>
             <main>
                 <Outlet />
